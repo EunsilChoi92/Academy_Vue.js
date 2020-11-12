@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        #parent {
+            width: 90%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input id="val" type="text" onkeyup="changeText()">
+    </div>
+    <div id="parent">
+        <div id="content_1"></div>
+        <div id="content_2"></div>
+        <div id="content_3"></div>
+        <div id="content_4"></div>
+    </div>
+    <script>
+        function changeText() {
+            const value = val.value;
+            const ele = document.querySelector('#parent').children;
+            
+            for(var i=0; i<ele.length; i++) {
+                ele[i].innerText = value;
+            }
+            
+
+        }
+
+    </script>
+</body>
+</html>

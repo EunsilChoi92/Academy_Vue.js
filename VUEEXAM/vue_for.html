@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <!-- v-on:keyup.enter 엔터키로 버튼 누르기- -->
+            <input type="text" v-model="txt" v-on:keyup.enter="add">
+            <button v-on:click="add">추가</button>
+        </div>
+        <!-- v-bind:key값은 항상 넣어주는 걸로! (performance 좋아짐, 정렬하기 좋음)-->
+        <div v-for="item in todos" v-bind:key="item.id">
+            {{ item.id }} / {{ item.txt }}
+        </div>
+        <!-- show -> directory -->
+        <button v-on:click="toggle($event, 1)">왔다갔다</button>
+        <div v-if="show">하잉</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                show: true,
+                todos: [
+                    {id: 1, txt: '텍스트1'},
+                    {id: 2, txt: '텍스트2'},
+                    {id: 3, txt: '텍스트3'}
+                ],
+                id: 3,
+                txt: ''
+            },
+            methods: {
+                // argument가 따로 없으면 toggle만 적어도 됨
+                // event와 인자 둘 다 보내고 싶을 때는
+                toggle(event, val) {
+                    console.log(event);
+                    console.log(val);
+                    this.show = !this.show;
+                },
+                add() {
+                    var obj = {
+                        id: ++this.id,
+                        txt: this.txt
+                    }
+                    this.todos.push(obj);
+                    this.txt = null;
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v- : reactive data -->
+        <!-- v- 생략 가능(:만 있으면 됨) -->
+        <div>
+            <todo-item v-for="item in list" :key="item.id" v-bind:todo="item" :name="myName"></todo-item>
+        </div>
+        <div>
+            <todo-item v-for="item in list" :key="item.id" v-bind:todo="item" :name="myName"></todo-item>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 컴포넌트 등록
+        Vue.component('todo-item', {
+            // 부모가 주는 자료
+            props: ['todo', 'name'],
+            template: `<li>{{ todo.id }}. {{ todo.todo }} {{ name }}</li>`
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                myName: '은찌리',
+                list: [
+                    {id: 1, todo: '집안 청소'},
+                    {id: 2, todo: '알고리즘 공부'},
+                    {id: 3, todo: '서버 구축'},
+                    {id: 4, todo: '이불 빨기'}
+                ]
+            }
+        })
+
+    </script>
+</body>
+</html>
