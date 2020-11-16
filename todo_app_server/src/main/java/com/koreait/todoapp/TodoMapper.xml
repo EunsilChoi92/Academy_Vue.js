@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.todoapp.TodoMapper">
+	<select id="selTodoList" resultType="TodoVO">
+		SELECT * FROM t_todo ORDER BY i_todo
+	</select>
+	<insert id="insTodo" parameterType="TodoVO">
+		INSERT INTO t_todo
+		(todo)
+		VALUES
+		(#{todo})
+	</insert>
+	<delete id="delTodo" parameterType="TodoVO">
+		DELETE FROM t_todo 
+		<if test="i_todo > 0">
+		WHERE i_todo = #{i_todo}
+		</if>
+	</delete>
+</mapper>
